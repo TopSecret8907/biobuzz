@@ -24,6 +24,13 @@ android {
     }
 }
 
+repositories {
+    maven { url = 'https://maven.pedropathing.com/' }
+    maven { url = 'https://maven.brott.dev/' }
+}
+
 dependencies {
     implementation project(':FtcRobotController')
+    implementation 'com.pedropathing:pedro:1.0.9'
+    implementation 'com.acmerobotics.dashboard:dashboard:0.4.16'
 }
