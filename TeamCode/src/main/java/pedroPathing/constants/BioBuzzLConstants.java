@@ -10,7 +10,7 @@ public final class BioBuzzLConstants {
 
     static {
         // Explicit name replaces the Blocks helper's selection of the first Pinpoint.
-        PinpointConstants.hardwareMapName = "pinpoint";
+        PinpointConstants.hardwareMapName = "odometry";
         // Pedro poses/paths remain IN INCHES; this unit applies to pod offsets only.
         PinpointConstants.distanceUnit = DistanceUnit.MM;
         // Pinpoint X offset = lateral location of forward pod; Y = forward location

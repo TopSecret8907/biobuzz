@@ -81,8 +81,8 @@ public class BioBuzzAuto extends OpMode {
     private Pose[] routeWaypoints() {
 
         return new Pose[]{
-                new Pose(56, 8, Math.toRadians(90)),
-                new Pose(56, 36, Math.toRadians(180))
+                new Pose(8, -56, Math.toRadians(90)),
+                new Pose(36, -56, Math.toRadians(90))
                 //new Pose(76.5729, 90.586, Math.toRadians(-110.6509)),
                 //new Pose(53.966, 96.4272, Math.toRadians(-14.4871))
         };

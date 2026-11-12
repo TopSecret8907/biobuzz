@@ -13,12 +13,11 @@ public class FlywheelTuning extends OpMode  {
     public double highVelocity = 1150;
     public double lowVelocity = 900;
     double curTargetVelocity = highVelocity;
-    // F = 14.40
-    // P =
-    double F = 14.4;
-    double P = 0;
-    double[] stepSizes = {10.0, 1.0, 0.1, 0.01, 0.001, 0.0001};
 
+    double F = 14.4;
+    double P = 50;
+
+    double[] stepSizes = {10.0, 1.0, 0.1, 0.01, 0.001, 0.0001};
     int stepIndex = 0;
 
     @Override
