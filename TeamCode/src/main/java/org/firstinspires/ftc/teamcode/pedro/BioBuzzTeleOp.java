@@ -28,9 +28,6 @@ public class BioBuzzTeleOp extends LinearOpMode {
     double currentx;
     double currenty;
     int targetVelocity;
-    double er;
-    double ex;
-    double ey;
     double rotation;
     double xpower;
     double ypower;
@@ -46,9 +43,6 @@ public class BioBuzzTeleOp extends LinearOpMode {
         int transferInPower;
         double transferOutPower;
         double transferLaunchPower;
-        int launchTime;
-        int maxVelocity;
-        int flywheelThreshold;
         int flywheelTime;
         double increment1;
         double increment2;
@@ -71,12 +65,9 @@ public class BioBuzzTeleOp extends LinearOpMode {
         transferInPower = 1;
         transferOutPower = 0.5;
         // launch variables
-        launchTime = 5000;
         transferLaunchPower = 0.18;
         // flywheel variables
         targetVelocity = 1150;
-        maxVelocity = 1780;
-        flywheelThreshold = 900;
         flywheelTime = 4000;
         increment1 = 0.5;
         increment2 = 0.8;
@@ -90,7 +81,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
         PinpointBlocks.encoderResolution(PinpointBlocks.FourBarOdometryPod(DistanceUnit.MM), DistanceUnit.MM);
         // Sets the odometry pod positions relative to the point that the odometry computer
         // tracks around.The X pod offset refers to how far sideways from the tracking point
-        // the X (forward) odometry pod is. left is positivethe Y Pod offset refers to how far
+        // the X (forward) odometry pod is. left is positive the Y Pod offset refers to how far
         // forward from the tracking point the Y (strafe) odometry pod is. Forward increases
         PinpointBlocks.offsets(DistanceUnit.MM, 143.95, -90.1);
         // Setting the Boolean to true reverses the encoder, false leaves it normal
@@ -161,7 +152,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
                     flowerWedge.setPosition(0);
                 }
                 // flywheel setVelocity
-                if (flywheelSet == false) {
+                if (!flywheelSet) {
                     if (flywheelTimer.milliseconds() >= flywheelTime * 2) {
                         ((DcMotorEx) flywheel).setVelocity(targetVelocity);
                         flywheelSet = true;
@@ -170,8 +161,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
                         ((DcMotorEx) flywheel).setVelocity(targetVelocity * increment2);
                     }
                 }
-                telemetry.addData("flywheelVelocity", ((DcMotorEx) flywheel).getVelocity());
-                telemetry.addData("targetVelocity", targetVelocity);
+                updateTelemetry2();
             }
         }
     }
@@ -179,13 +169,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
     /**
      * Describe this function...
      */
-
-    /**
-     * Describe this function...
-     */
     private void updateTelemetry2() {
-        ElapsedTime loopTimer;
-
         // Returns the direction your robot is facing the unit of your choice
         currentr = PinpointBlocks.orientation(AngleUnit.DEGREES);
         // Returns x position the unit of your choice
