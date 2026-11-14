@@ -13,10 +13,8 @@ public class FlywheelTuning extends OpMode  {
     public double highVelocity = 1150;
     public double lowVelocity = 900;
     double curTargetVelocity = highVelocity;
-
     double F = 14.4;
     double P = 50;
-
     double[] stepSizes = {10.0, 1.0, 0.1, 0.01, 0.001, 0.0001};
     int stepIndex = 0;
 
@@ -32,9 +30,6 @@ public class FlywheelTuning extends OpMode  {
 
     @Override
     public void loop() {
-        // get all our gamepad commands
-        // set target velocity
-        // update telemetry
 
         if (gamepad1.triangleWasPressed()) {
             if (curTargetVelocity == highVelocity) {

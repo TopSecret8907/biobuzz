@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -49,7 +51,7 @@ public class BioBuzzAuto extends OpMode {
 
     // Expansion Hub Motors
     private DcMotorEx intake;    // Port 0 (Expansion Hub)
-    private DcMotorEx flywheel;  // Port 1 (Expansion Hub)
+    public DcMotorEx flywheelMotor;
     private DcMotorEx transfer;  // Port 2 (Expansion Hub)
 
     // Control Hub Servos
@@ -89,11 +91,16 @@ public class BioBuzzAuto extends OpMode {
 
         // HardwareMap setup for Expansion Hub motors
         intake = hardwareMap.get(DcMotorEx.class, "intake");
-        flywheel = hardwareMap.get(DcMotorEx.class, "flywheel");
         transfer = hardwareMap.get(DcMotorEx.class, "transfer");
 
+        flywheelMotor = hardwareMap.get(DcMotorEx.class, "flywheel");
+        flywheelMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        flywheelMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        PIDFCoefficients pidfCoefficients = new PIDFCoefficients(50,0,0,14.4);
+        flywheelMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,pidfCoefficients);
+        flywheelMotor.setVelocity(1150);
+
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        flywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         transfer.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // HardwareMap setup for Control Hub servos
@@ -166,11 +173,11 @@ public class BioBuzzAuto extends OpMode {
     }
 
     public void startFlywheel(double power) {
-        if (flywheel != null) flywheel.setPower(power);
+        if (flywheelMotor != null) flywheelMotor.setPower(power);
     }
 
     public void stopFlywheel() {
-        if (flywheel != null) flywheel.setPower(0);
+        if (flywheelMotor != null) flywheelMotor.setPower(0);
     }
 
     /**
@@ -221,7 +228,7 @@ public class BioBuzzAuto extends OpMode {
 
         // Hardware Telemetry
         telemetry.addData("Intake Power", intake != null ? intake.getPower() : 0);
-        telemetry.addData("Flywheel Power", flywheel != null ? flywheel.getPower() : 0);
+        telemetry.addData("Flywheel Power", flywheelMotor != null ? flywheelMotor.getPower() : 0);
         telemetry.addData("Transfer Power", transfer != null ? transfer.getPower() : 0);
         telemetry.addData("Gate Pos", gate != null ? gate.getPosition() : 0);
         telemetry.addData("Gate Is Up", gateIsUp);
