@@ -20,7 +20,7 @@
  *   SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode.pedro;
+package org.firstinspires.ftc.teamcode.pedro.other;
 
 
 import org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion;

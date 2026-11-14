@@ -19,10 +19,11 @@ public class BiobuzzConstants {
         c.frontRightName.set("frontRight");
         c.backRightName.set("backRight");
 
-        c.frontLeftDirection.set(DcMotorSimple.Direction.REVERSE);
+        // TeleOp uses forward motor directions and applies wheel signs in its power mix.
+        c.frontLeftDirection.set(DcMotorSimple.Direction.FORWARD);
         c.backLeftDirection.set(DcMotorSimple.Direction.FORWARD);
         c.frontRightDirection.set(DcMotorSimple.Direction.FORWARD);
-        c.backRightDirection.set(DcMotorSimple.Direction.REVERSE);
+        c.backRightDirection.set(DcMotorSimple.Direction.FORWARD);
     });
 
     public static final PinpointConfig pinpointConfig = new PinpointConfig(c -> {
