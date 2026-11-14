@@ -78,18 +78,18 @@ public class BioBuzzTeleOp extends LinearOpMode {
         // setup pinpoint odometry
         // sets the number of ticks per mm of linear travel for the odometry pod you are using
         // ticks per unit of the goBILDA 4-Bar Odometry Pod
-        PinpointBlocks.encoderResolution(PinpointBlocks.FourBarOdometryPod(DistanceUnit.MM), DistanceUnit.MM);
+        // PinpointBlocks.encoderResolution(PinpointBlocks.FourBarOdometryPod(DistanceUnit.MM), DistanceUnit.MM);
         // Sets the odometry pod positions relative to the point that the odometry computer
         // tracks around.The X pod offset refers to how far sideways from the tracking point
         // the X (forward) odometry pod is. left is positive the Y Pod offset refers to how far
         // forward from the tracking point the Y (strafe) odometry pod is. Forward increases
-        PinpointBlocks.offsets(DistanceUnit.MM, 143.95, -90.1);
+        // PinpointBlocks.offsets(DistanceUnit.MM, 143.95, -90.1);
         // Setting the Boolean to true reverses the encoder, false leaves it normal
-        PinpointBlocks.reverseEncoders(true, false);
+        // PinpointBlocks.reverseEncoders(true, false);
         // Resets the current position to 0,0,0 and recalibrates the Odometry Computer's
         // internal IMU. Robot MUST Be stationary. Device takes a large number of samples,
         // and uses those as the gyroscope zero-offset. This takes approximately 0.25 seconds.
-        PinpointBlocks.resetPosAndIMU();
+        // PinpointBlocks.resetPosAndIMU();
         // motors
         gate.setPosition(0);
         flowerWedge.setPosition(0);
@@ -171,16 +171,16 @@ public class BioBuzzTeleOp extends LinearOpMode {
      */
     private void updateTelemetry2() {
         // Returns the direction your robot is facing the unit of your choice
-        currentr = PinpointBlocks.orientation(AngleUnit.DEGREES);
+        // currentr = PinpointBlocks.orientation(AngleUnit.DEGREES);
         // Returns x position the unit of your choice
-        currentx = PinpointBlocks.xPosition(DistanceUnit.MM);
+        // currentx = PinpointBlocks.xPosition(DistanceUnit.MM);
         // Returns y position the unit of your choice
-        currenty = PinpointBlocks.yPosition(DistanceUnit.MM);
-        telemetry.addLine("Pinpoint Odometry");
-        telemetry.addData("currentr", currentr);
-        telemetry.addData("currentx", currentx);
-        telemetry.addData("currenty", currenty);
-        telemetry.addLine("");
+        // currenty = PinpointBlocks.yPosition(DistanceUnit.MM);
+        // telemetry.addLine("Pinpoint Odometry");
+        // telemetry.addData("currentr", currentr);
+        // telemetry.addData("currentx", currentx);
+        // telemetry.addData("currenty", currenty);
+        // telemetry.addLine("");
         telemetry.addLine("Motors");
         telemetry.addData("flywheelVelocity", ((DcMotorEx) flywheel).getVelocity());
         telemetry.addData("targetVelocity", targetVelocity);
