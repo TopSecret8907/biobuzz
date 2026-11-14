@@ -1,6 +1,5 @@
 package pedroPathing;
 
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,20 +10,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import pedroPathing.constants.BioBuzzFConstants;
-import pedroPathing.constants.BioBuzzLConstants;
-
+import com.pedropathing.api.Paths;
 import com.pedropathing.follower.Follower;
-import com.pedropathing.localization.Pose;
-import com.pedropathing.pathgen.BezierLine;
-import com.pedropathing.pathgen.Path;
-import com.pedropathing.pathgen.Point;
+import com.pedropathing.math.Pose;
+import com.pedropathing.paths.Path;
+import org.firstinspires.ftc.teamcode.pedro.Constants;
+
 /**
  * Java/Pedro replacement for the Blocks-based moveToPoint approach.
  */
 @Autonomous(name = "BioBuzz Auto (route template)", group = "BioBuzz")
 public class BioBuzzAuto extends OpMode {
-    private static final double MAX_DRIVE_POWER = 0.3;
     private static final double SEGMENT_TIMEOUT_SECONDS = 8.0;
 
     // Servo positions & timing constants
@@ -71,8 +67,7 @@ public class BioBuzzAuto extends OpMode {
         route.clear();
         Pose previous = START_POSE;
         for (Pose destination : routeWaypoints()) {
-            Path path = new Path(new BezierLine(new Point(previous), new Point(destination)));
-            path.setLinearHeadingInterpolation(previous.getHeading(), destination.getHeading());
+            Path path = Paths.line(previous, destination);
             route.add(path);
             previous = destination;
         }
@@ -81,10 +76,8 @@ public class BioBuzzAuto extends OpMode {
     private Pose[] routeWaypoints() {
 
         return new Pose[]{
-                new Pose(8, -56, Math.toRadians(90)),
-                new Pose(36, -56, Math.toRadians(90))
-                //new Pose(76.5729, 90.586, Math.toRadians(-110.6509)),
-                //new Pose(53.966, 96.4272, Math.toRadians(-14.4871))
+                new Pose(0, -56, Math.toRadians(90)),
+                new Pose(0, -46, Math.toRadians(90))
         };
 
     }
@@ -92,9 +85,8 @@ public class BioBuzzAuto extends OpMode {
 
     @Override
     public void init() {
-        follower = new Follower(hardwareMap, BioBuzzFConstants.class, BioBuzzLConstants.class);
-        follower.setMaxPower(MAX_DRIVE_POWER);
-        follower.setStartingPose(START_POSE);
+        follower = Constants.create(hardwareMap);
+        follower.setPose(START_POSE);
 
         // HardwareMap setup for Expansion Hub motors
         intake = hardwareMap.get(DcMotorEx.class, "intake");
@@ -135,7 +127,7 @@ public class BioBuzzAuto extends OpMode {
     }
 
     private void startSegment() {
-        follower.followPath(route.get(segmentIndex));
+        follower.follow(route.get(segmentIndex));
         segmentTimer.reset();
         state = State.FOLLOWING;
     }
@@ -215,18 +207,18 @@ public class BioBuzzAuto extends OpMode {
     }
 
     private void finish(State result) {
-        follower.breakFollowing();
+        follower.stop();
         state = result;
     }
 
     private void reportTelemetry() {
-        Pose pose = follower.getPose();
+        Pose pose = follower.pose();
         telemetry.addData("State", state);
         telemetry.addData("Route segments", route.size());
         telemetry.addData("Segment index (zero based)", segmentIndex);
-        telemetry.addData("X (in)", pose.getX());
-        telemetry.addData("Y (in)", pose.getY());
-        telemetry.addData("Heading (deg)", Math.toDegrees(pose.getHeading()));
+        telemetry.addData("X (in)", pose.x());
+        telemetry.addData("Y (in)", pose.y());
+        telemetry.addData("Heading (deg)", Math.toDegrees(pose.heading()));
 
         // Hardware Telemetry
         telemetry.addData("Intake Power", intake != null ? intake.getPower() : 0);
@@ -245,7 +237,7 @@ public class BioBuzzAuto extends OpMode {
     @Override
     public void stop() {
         if (follower != null) {
-            follower.breakFollowing();
+            follower.stop();
         }
         stopIntake();
         stopFlywheel();

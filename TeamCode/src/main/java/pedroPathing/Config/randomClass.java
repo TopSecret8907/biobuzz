@@ -1,6 +1,6 @@
 package pedroPathing.Config;
 
-import com.pedropathing.localization.Pose;
+import com.pedropathing.math.Pose;
 
 public class randomClass {
     public static Pose autoEndRed = new Pose(88.625, 8.125, Math.toRadians(90));
