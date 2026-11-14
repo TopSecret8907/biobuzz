@@ -1,4 +1,4 @@
-package pedroPathing.Config;
+package org.firstinspires.ftc.teamcode.pedro.config;
 
 import com.acmerobotics.dashboard.config.Config;
 @Config

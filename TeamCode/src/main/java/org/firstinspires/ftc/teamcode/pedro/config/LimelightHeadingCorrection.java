@@ -1,9 +1,9 @@
-package pedroPathing.Config;
+package org.firstinspires.ftc.teamcode.pedro.config;
 
-import static pedroPathing.Config.ConfigFile.goalHeight;
-import static pedroPathing.Config.ConfigFile.limelightHeight;
-import static pedroPathing.Config.ConfigFile.limelightOffsetForward;
-import static pedroPathing.Config.ConfigFile.limelightOffsetRightwards;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.goalHeight;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.limelightHeight;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.limelightOffsetForward;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.limelightOffsetRightwards;
 
 public class LimelightHeadingCorrection {
 

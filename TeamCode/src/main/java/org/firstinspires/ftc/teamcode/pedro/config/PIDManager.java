@@ -1,15 +1,14 @@
-package pedroPathing.Config;
+package org.firstinspires.ftc.teamcode.pedro.config;
 
-import static pedroPathing.Config.ConfigFile.CONFIGkP;
-import static pedroPathing.Config.ConfigFile.CONFIGkI;
-import static pedroPathing.Config.ConfigFile.CONFIGkD;
-import static pedroPathing.Config.ConfigFile.CONFIGkPClose;
-import static pedroPathing.Config.ConfigFile.CONFIGkIClose;
-import static pedroPathing.Config.ConfigFile.CONFIGkDClose;
-import static pedroPathing.Config.ConfigFile.loopTime;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.CONFIGkP;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.CONFIGkI;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.CONFIGkD;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.CONFIGkPClose;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.CONFIGkIClose;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.CONFIGkDClose;
+import static org.firstinspires.ftc.teamcode.pedro.config.ConfigFile.loopTime;
 
 import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;

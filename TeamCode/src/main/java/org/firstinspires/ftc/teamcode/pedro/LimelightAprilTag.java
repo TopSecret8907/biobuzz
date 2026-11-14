@@ -1,4 +1,4 @@
-package pedroPathing;
+package org.firstinspires.ftc.teamcode.pedro;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;

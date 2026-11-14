@@ -1,4 +1,4 @@
-package pedroPathing;
+package org.firstinspires.ftc.teamcode.pedro;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -14,7 +14,6 @@ import com.pedropathing.api.Paths;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.math.Pose;
 import com.pedropathing.paths.Path;
-import org.firstinspires.ftc.teamcode.pedro.Constants;
 
 /**
  * Java/Pedro replacement for the Blocks-based moveToPoint approach.

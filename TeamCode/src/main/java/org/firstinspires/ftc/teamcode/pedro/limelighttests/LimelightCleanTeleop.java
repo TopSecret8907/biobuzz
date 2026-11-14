@@ -1,6 +1,6 @@
-package pedroPathing.LimelightTests;
+package org.firstinspires.ftc.teamcode.pedro.limelighttests;
 
-import pedroPathing.Config.LimelightManager;
+import org.firstinspires.ftc.teamcode.pedro.config.LimelightManager;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;

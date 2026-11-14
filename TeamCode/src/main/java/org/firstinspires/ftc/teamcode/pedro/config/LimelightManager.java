@@ -1,4 +1,4 @@
-package pedroPathing.Config;
+package org.firstinspires.ftc.teamcode.pedro.config;
 
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes.DetectorResult;
