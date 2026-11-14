@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-public class Constants {
+public class BiobuzzConstants {
     public static final MecanumConfig mecanumConfig = new MecanumConfig(c -> {
         c.frontLeftName.set("frontLeft");
         c.backLeftName.set("backLeft");

@@ -84,7 +84,7 @@ public class BioBuzzAuto extends OpMode {
 
     @Override
     public void init() {
-        follower = Constants.create(hardwareMap);
+        follower = BiobuzzConstants.create(hardwareMap);
         follower.setPose(START_POSE);
 
         // HardwareMap setup for Expansion Hub motors
