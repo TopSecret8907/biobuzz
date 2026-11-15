@@ -28,12 +28,12 @@ public final class BioBuzzMechanisms {
         setGateOpen(false);
         setFlowerWedgeLowered(false);
         flywheel.setDirection(DcMotor.Direction.REVERSE);
-    }
-
-    void configureForAutonomous() {
         flywheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         flywheel.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,
                 new PIDFCoefficients(50, 0, 0, 14.4));
+    }
+
+    void configureForAutonomous() {
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         transfer.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
