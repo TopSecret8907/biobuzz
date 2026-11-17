@@ -14,10 +14,11 @@ public class FlywheelTuning extends OpMode  {
     public double lowVelocity = 1050;
     double curTargetVelocity = highVelocity;
     double minVelocity = highVelocity;
+    double maxVelocity = highVelocity;
 // F = 14.4
 // P = 50
     double F = 12.6;
-    double P = 0;
+    double P = 60;
     double[] stepSizes = {10.0, 1.0, 0.1, 0.01, 0.001, 0.0001};
     int stepIndex = 0;
 
@@ -37,7 +38,13 @@ public class FlywheelTuning extends OpMode  {
         if (gamepad1.triangleWasPressed()) {
             if (curTargetVelocity == highVelocity) {
                 curTargetVelocity = lowVelocity;
-            } else { curTargetVelocity = highVelocity; }
+                minVelocity = lowVelocity;
+                maxVelocity = lowVelocity;
+            } else {
+                curTargetVelocity = highVelocity;
+                minVelocity = highVelocity;
+                maxVelocity = highVelocity;
+            }
         }
 
         if (gamepad1.circleWasPressed()) {
@@ -67,13 +74,16 @@ public class FlywheelTuning extends OpMode  {
 
         double curVelocity = flywheelMotor.getVelocity();
         if (curVelocity < minVelocity) {
-            double minVelocity = curVelocity;
+            minVelocity = curVelocity;
         }
         double error = curTargetVelocity - curVelocity;
-
+        if (curVelocity > maxVelocity) {
+            maxVelocity = curVelocity;
+        }
         telemetry.addData("Target Velocity", curTargetVelocity);
         telemetry.addData("Current Velocity", "%.2f", curVelocity);
         telemetry.addData("Lowest Velocity", "%.2f", minVelocity);
+        telemetry.addData("Highest Velocity", "%.2f", maxVelocity);
         telemetry.addData("Error", "%.2f", error);
         telemetry.addLine("-----------------------------");
         telemetry.addData("Tuning P", "%.4f (D-Pad U/D)", P);
