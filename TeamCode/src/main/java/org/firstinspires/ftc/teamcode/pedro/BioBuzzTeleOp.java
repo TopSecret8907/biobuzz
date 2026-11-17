@@ -25,9 +25,9 @@ public class BioBuzzTeleOp extends LinearOpMode {
     private DcMotor intake;
     private DcMotor transfer;
 
-    double currentr;
-    double currentx;
-    double currenty;
+//    double currentr;
+//    double currentx;
+//    double currenty;
     int targetVelocity;
     double rotation;
     double xpower;
