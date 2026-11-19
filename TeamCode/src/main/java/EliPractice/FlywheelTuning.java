@@ -21,7 +21,7 @@ public class FlywheelTuning extends LinearOpMode  {
     // old flywheel F = 14.4
     // old flywheel P = 50
     double F = 12.6;
-    double P = 60;
+    double P = 300;
     // values that get added or subtracted to F or P when we use the d-pad
     double[] stepSizes = {10.0, 1.0, 0.1, 0.01, 0.001, 0.0001};
     // this tells us which value in the list we are going to use next time the d-pad is pressed
