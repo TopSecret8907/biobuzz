@@ -39,6 +39,7 @@ public class FlywheelTuning extends LinearOpMode  {
         flywheelMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,pidfCoefficients);
         // ftc dashboard telemetry setup
         MultipleTelemetry tel = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        waitForStart();
         while (opModeIsActive()) {
             // use triangle to emulate shooting balls without shooting balls
             if (gamepad1.triangleWasPressed()) {
