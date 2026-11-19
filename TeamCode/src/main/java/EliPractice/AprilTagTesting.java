@@ -31,9 +31,18 @@ public class AprilTagTesting extends LinearOpMode {
     @Override
     public void runOpMode() {
         initAprilTag();
+
         waitForStart();
         while (opModeIsActive()) {
             telemetryAprilTag();
+            telemetry.update();
+
+            if (gamepad1.dpad_down) {
+                visionPortal.stopStreaming();
+            } else if (gamepad1.dpad_up) {
+                visionPortal.resumeStreaming();
+            }
+            sleep(20);
         }
     }
 
