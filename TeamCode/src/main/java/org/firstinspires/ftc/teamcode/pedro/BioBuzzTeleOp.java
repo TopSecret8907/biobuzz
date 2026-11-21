@@ -87,6 +87,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
         if (gamepad1.triangleWasPressed()) {
             mechanisms.setFlowerWedgeLowered(false);
         }
+
     }
 
     private void updateTelemetry(BioBuzzMechanisms mechanisms) {

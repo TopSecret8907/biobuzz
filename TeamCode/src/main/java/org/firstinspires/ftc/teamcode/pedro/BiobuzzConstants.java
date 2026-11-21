@@ -38,8 +38,12 @@ public class BiobuzzConstants {
 
     public static final ForesightConfig foresightConfig = new ForesightConfig(c -> {});
 
+    public static Mecanum createDrivetrain(HardwareMap hardwareMap) {
+        return new Mecanum(hardwareMap, mecanumConfig);
+    }
+
     public static Follower create(HardwareMap h) {
-        Mecanum drivetrain = new Mecanum(h, mecanumConfig);
+        Mecanum drivetrain = createDrivetrain(h);
         PinpointLocalizer localizer = new PinpointLocalizer(h, pinpointConfig);
         Foresight algorithm = new Foresight(foresightConfig);
         return new Follower(localizer, drivetrain, algorithm);
