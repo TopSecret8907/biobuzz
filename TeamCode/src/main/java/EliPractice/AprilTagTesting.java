@@ -18,6 +18,11 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagSingleDetection;
 
 import java.util.List;
 
+// Once we can see the aprilTag, the turret will start moving.
+// Range will be used to tell the power of the flywheel.
+// Bearing will be used to rotate the turret until it's lined up.
+// Elevation might be used for something.
+
 @TeleOp
 public class AprilTagTesting extends LinearOpMode {
     private static final boolean USE_WEBCAM = true;
@@ -48,8 +53,8 @@ public class AprilTagTesting extends LinearOpMode {
 
     private void initAprilTag() {
         aprilTag = new AprilTagProcessor.Builder()
-            .setOutputUnits(DistanceUnit.INCH, AngleUnit.DEGREES)
-            .build();
+                .setOutputUnits(DistanceUnit.INCH, AngleUnit.DEGREES)
+                .build();
         VisionPortal.Builder builder = new VisionPortal.Builder();
         if (USE_WEBCAM) {
             builder.setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"));
