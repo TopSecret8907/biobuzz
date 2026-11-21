@@ -23,11 +23,10 @@ public final class MecanumDrive {
         backRight.setDirection(config.backRightDirection.get());
     }
 
-    /** Applies the signed wheel mix from the original TeleOp. */
     public void drive(double forward, double strafe, double turn) {
-        frontLeft.setPower(-(forward + strafe + turn));
+        frontLeft.setPower(forward + strafe + turn);
         backLeft.setPower((forward - strafe) + turn);
         frontRight.setPower((forward - strafe) - turn);
-        backRight.setPower(-((forward + strafe) - turn));
+        backRight.setPower((forward + strafe) - turn);
     }
 }

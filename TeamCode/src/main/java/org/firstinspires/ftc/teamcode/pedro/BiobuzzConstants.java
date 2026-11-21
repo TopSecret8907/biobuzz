@@ -19,11 +19,10 @@ public class BiobuzzConstants {
         c.frontRightName.set("frontRight");
         c.backRightName.set("backRight");
 
-        // TeleOp uses forward motor directions and applies wheel signs in its power mix.
-        c.frontLeftDirection.set(DcMotorSimple.Direction.FORWARD);
+        c.frontLeftDirection.set(DcMotorSimple.Direction.REVERSE);
         c.backLeftDirection.set(DcMotorSimple.Direction.FORWARD);
         c.frontRightDirection.set(DcMotorSimple.Direction.FORWARD);
-        c.backRightDirection.set(DcMotorSimple.Direction.FORWARD);
+        c.backRightDirection.set(DcMotorSimple.Direction.REVERSE);
     });
 
     public static final PinpointConfig pinpointConfig = new PinpointConfig(c -> {
@@ -39,21 +38,7 @@ public class BiobuzzConstants {
     public static final ForesightConfig foresightConfig = new ForesightConfig(c -> {});
 
     public static Follower create(HardwareMap h) {
-        // Pedro's wheel mix omits the front-left/back-right signs used by TeleOp.
-        // Apply those signs as motor directions for the path follower.
-        MecanumConfig pedroConfig = new MecanumConfig(c -> {
-            c.frontLeftName.set(mecanumConfig.frontLeftName.get());
-            c.backLeftName.set(mecanumConfig.backLeftName.get());
-            c.frontRightName.set(mecanumConfig.frontRightName.get());
-            c.backRightName.set(mecanumConfig.backRightName.get());
-            c.frontLeftDirection.set(mecanumConfig.frontLeftDirection.get().inverted());
-            c.backLeftDirection.set(mecanumConfig.backLeftDirection.get());
-            c.frontRightDirection.set(mecanumConfig.frontRightDirection.get());
-            c.backRightDirection.set(mecanumConfig.backRightDirection.get().inverted());
-            c.manualBrakeMode.set(mecanumConfig.manualBrakeMode.get());
-            c.powerThreshold.set(mecanumConfig.powerThreshold.get());
-        });
-        Mecanum drivetrain = new Mecanum(h, pedroConfig);
+        Mecanum drivetrain = new Mecanum(h, mecanumConfig);
         PinpointLocalizer localizer = new PinpointLocalizer(h, pinpointConfig);
         Foresight algorithm = new Foresight(foresightConfig);
         return new Follower(localizer, drivetrain, algorithm);
