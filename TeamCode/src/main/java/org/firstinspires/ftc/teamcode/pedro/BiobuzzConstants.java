@@ -25,14 +25,15 @@ public class BiobuzzConstants {
         c.backRightDirection.set(DcMotorSimple.Direction.REVERSE);
     });
 
-    public static final PinpointConfig pinpointConfig = new PinpointConfig(c -> {
+    public static PinpointConfig pinpointConfig = new PinpointConfig(c -> {
         c.name.set("odometry");
-        c.xPodDirection.set(GoBildaPinpointDriver.EncoderDirection.FORWARD);
-        c.yPodDirection.set(GoBildaPinpointDriver.EncoderDirection.REVERSED);
-        c.xPodOffset.set(143.95);
-        c.yPodOffset.set(-90.1);
-        c.offsetUnits.set(DistanceUnit.MM);
         c.podType.set(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
+        c.xPodOffset.set(-5.188086802565207);
+        c.yPodOffset.set(-3.9179028488519623);
+        c.xPodDirection.set(GoBildaPinpointDriver.EncoderDirection.REVERSED);
+        c.yPodDirection.set(GoBildaPinpointDriver.EncoderDirection.FORWARD);
+        c.globalDistanceUnit.set(DistanceUnit.INCH);
+        c.offsetUnits.set(DistanceUnit.INCH);
     });
 
     public static final ForesightConfig foresightConfig = new ForesightConfig(c -> {});

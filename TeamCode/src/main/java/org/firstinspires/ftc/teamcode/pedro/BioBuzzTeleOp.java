@@ -91,6 +91,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
         telemetry.addData("flywheelVelocity", mechanisms.getFlywheelVelocity());
         telemetry.addData("targetVelocity", BioBuzzMechanisms.LAUNCH_VELOCITY);
         telemetry.addData("flywheelPower", mechanisms.getFlywheelPower());
+        telemetry.addData("dc", mechanisms.getDigitalChannel().getState());
         telemetry.update();
     }
 }

@@ -2,9 +2,11 @@ package org.firstinspires.ftc.teamcode.pedro;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.Servo;
+
 
 public final class BioBuzzMechanisms {
     public static final int LAUNCH_VELOCITY = 1150;
@@ -16,14 +18,21 @@ public final class BioBuzzMechanisms {
     private final DcMotor intake;
     private final DcMotor transfer;
 
+    private final DigitalChannel digitalChannel;
+
     public BioBuzzMechanisms(HardwareMap hardwareMap) {
         gate = hardwareMap.get(Servo.class, "gate");
         flowerWedge = hardwareMap.get(Servo.class, "flowerWedge");
         flywheel = hardwareMap.get(DcMotorEx.class, "flywheel");
         intake = hardwareMap.get(DcMotor.class, "intake");
         transfer = hardwareMap.get(DcMotor.class, "transfer");
+        digitalChannel = hardwareMap.get(DigitalChannel.class, "dc");
     }
 
+    public DigitalChannel getDigitalChannel() {
+        return this.digitalChannel;
+
+    }
     public void initialize() {
         setGateOpen(false);
         setFlowerWedgeLowered(false);
@@ -31,6 +40,7 @@ public final class BioBuzzMechanisms {
         flywheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         flywheel.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,
                 new PIDFCoefficients(50, 0, 0, 14.4));
+
     }
 
     void configureForAutonomous() {
