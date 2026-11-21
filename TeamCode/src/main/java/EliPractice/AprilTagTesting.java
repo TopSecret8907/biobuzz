@@ -19,9 +19,8 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagSingleDetection;
 import java.util.List;
 
 // Once we can see the aprilTag, the turret will start moving.
-// Range will be used to tell the power of the flywheel.
+// Range and Elevation will be used to tell the power of the flywheel.
 // Bearing will be used to rotate the turret until it's lined up.
-// Elevation might be used for something.
 
 @TeleOp
 public class AprilTagTesting extends LinearOpMode {
