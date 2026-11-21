@@ -20,6 +20,9 @@ public class BioBuzzTeleOp extends LinearOpMode {
         ElapsedTime flywheelTimer = new ElapsedTime();
         flywheelTimer.reset();
         mechanisms.initialize();
+        telemetry.addData("dc init", mechanisms.getDigitalChannel().getState());
+        telemetry.update();
+
         waitForStart();
 
         if (opModeIsActive()) {
