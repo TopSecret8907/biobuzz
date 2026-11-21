@@ -10,7 +10,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
     private static final int FLYWHEEL_STAGE_MS = 4000;
     private static final double INITIAL_VELOCITY_FRACTION = 0.5;
     private static final double INTERMEDIATE_VELOCITY_FRACTION = 0.8;
-
+    public static boolean slow;
     @Override
     public void runOpMode() {
         BioBuzzMechanisms mechanisms = new BioBuzzMechanisms(hardwareMap);
@@ -26,6 +26,11 @@ public class BioBuzzTeleOp extends LinearOpMode {
             mechanisms.setFlywheelVelocity(BioBuzzMechanisms.LAUNCH_VELOCITY * INITIAL_VELOCITY_FRACTION);
             boolean flywheelAtTargetStage = false;
             while (opModeIsActive()) {
+                if (gamepad1.right_trigger_pressed) {
+                    slow = true;
+                } else {
+                    slow = false;
+                }
                 drive.drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
                 updateMechanismControls(mechanisms);
 

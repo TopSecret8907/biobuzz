@@ -24,9 +24,20 @@ public final class MecanumDrive {
     }
 
     public void drive(double forward, double strafe, double turn) {
-        frontLeft.setPower(forward + strafe + turn);
-        backLeft.setPower((forward - strafe) + turn);
-        frontRight.setPower((forward - strafe) - turn);
-        backRight.setPower((forward + strafe) - turn);
+        double slowMoveSpeed = 0.5;
+        double slowTurnSpeed = 0.8;
+        double baseMoveSpeed = 1;
+        double baseTurnSpeed = 1;
+        if (BioBuzzTeleOp.slow) {
+            frontLeft.setPower(forward * slowMoveSpeed + strafe * slowMoveSpeed + turn * slowTurnSpeed);
+            backLeft.setPower((forward * slowMoveSpeed - strafe * slowMoveSpeed) + turn * slowTurnSpeed);
+            frontRight.setPower((forward * slowMoveSpeed - strafe * slowMoveSpeed) - turn * slowTurnSpeed);
+            backRight.setPower((forward * slowMoveSpeed + strafe * slowMoveSpeed) - turn * slowTurnSpeed);
+        } else {
+            frontLeft.setPower(forward * baseMoveSpeed + strafe * baseMoveSpeed + turn * baseTurnSpeed);
+            backLeft.setPower((forward * baseMoveSpeed - strafe * baseMoveSpeed) + turn * baseTurnSpeed);
+            frontRight.setPower((forward * baseMoveSpeed - strafe * baseMoveSpeed) - turn * baseTurnSpeed);
+            backRight.setPower((forward * baseMoveSpeed + strafe * baseMoveSpeed) - turn * baseTurnSpeed);
+        }
     }
 }
