@@ -18,8 +18,8 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagSingleDetection;
 
 import java.util.List;
 
-// Once we can see the aprilTag, the turret will start moving.
-// Range and Elevation will be used to tell the power of the flywheel.
+// Once we can see the aprilTag, the turret will start moving and the flywheel will speed up or slow down.
+// Range and Elevation will be used to tell the speed of the flywheel.
 // Bearing will be used to rotate the turret until it's lined up.
 
 @TeleOp
